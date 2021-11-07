@@ -77,7 +77,7 @@ class A2C_nstep(OnPolicyAlgorithm_nstep):
         _init_setup_model: bool = True,
     ):
 
-        super(A2C, self).__init__(
+        super(A2C_nstep, self).__init__(
             policy,
             env,
             learning_rate=learning_rate,
@@ -185,12 +185,12 @@ class A2C_nstep(OnPolicyAlgorithm_nstep):
         eval_env: Optional[GymEnv] = None,
         eval_freq: int = -1,
         n_eval_episodes: int = 5,
-        tb_log_name: str = "A2C",
+        tb_log_name: str = "A2C_nstep",
         eval_log_path: Optional[str] = None,
         reset_num_timesteps: bool = True,
-    ) -> "A2C":
+    ) -> "A2C_nstep":
 
-        return super(A2C, self).learn(
+        return super(A2C_nstep, self).learn(
             total_timesteps=total_timesteps,
             callback=callback,
             log_interval=log_interval,
