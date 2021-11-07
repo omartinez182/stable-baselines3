@@ -74,7 +74,7 @@ class OnPolicyAlgorithm_nstep(BaseAlgorithm):
         supported_action_spaces: Optional[Tuple[gym.spaces.Space, ...]] = None,
     ):
 
-        super(OnPolicyAlgorithm, self).__init__(
+        super(OnPolicyAlgorithm_nstep, self).__init__(
             policy=policy,
             env=env,
             policy_base=policy_base,
@@ -220,10 +220,10 @@ class OnPolicyAlgorithm_nstep(BaseAlgorithm):
         eval_env: Optional[GymEnv] = None,
         eval_freq: int = -1,
         n_eval_episodes: int = 5,
-        tb_log_name: str = "OnPolicyAlgorithm",
+        tb_log_name: str = "OnPolicyAlgorithm_nstep",
         eval_log_path: Optional[str] = None,
         reset_num_timesteps: bool = True,
-    ) -> "OnPolicyAlgorithm":
+    ) -> "OnPolicyAlgorithm_nstep":
         iteration = 0
 
         total_timesteps, callback = self._setup_learn(
