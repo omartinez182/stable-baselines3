@@ -346,6 +346,14 @@ class RolloutBuffer(BaseBuffer):
         self.generator_ready = False
         super(RolloutBuffer, self).reset()
 
+    def compute_returns_nsteps(self, next_value, rewards, masks, gamma=0.99)
+        R = next_value
+        returns = []
+        for step in reversed(range(len(rewards))):
+            R = rewards[step] + gamma * R * masks[step]
+            returns.insert(0, R)
+        self.returns = returns
+
     def compute_returns_nstep(self, last_values: th.Tensor, dones: np.ndarray) -> None:
         """
         Post-processing step: compute the lambda-return (TD(lambda) estimate)

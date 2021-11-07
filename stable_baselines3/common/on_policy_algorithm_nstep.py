@@ -198,8 +198,8 @@ class OnPolicyAlgorithm_nstep(BaseAlgorithm):
             # Compute value for the last timestep
             obs_tensor = obs_as_tensor(new_obs, self.device)
             _, values, _ = self.policy.forward(obs_tensor)
-
-        rollout_buffer.compute_returns_nstep(last_values=values, dones=dones)
+        
+        rollout_buffer.compute_returns_nsteps(values, rewards, dones)
 
         callback.on_rollout_end()
 
