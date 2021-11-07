@@ -9,6 +9,7 @@ from stable_baselines3.common.policies import ActorCriticPolicy
 from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
 from stable_baselines3.common.utils import explained_variance
 
+
 class A2C_nstep(OnPolicyAlgorithm_nstep):
     """
     Advantage Actor Critic (A2C n-step)
