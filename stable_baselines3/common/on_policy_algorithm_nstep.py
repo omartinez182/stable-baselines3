@@ -199,7 +199,7 @@ class OnPolicyAlgorithm_nstep(BaseAlgorithm):
             obs_tensor = obs_as_tensor(new_obs, self.device)
             _, values, _ = self.policy.forward(obs_tensor)
         
-        rollout_buffer.compute_returns_nstep(values, rewards, dones)
+        rollout_buffer.compute_returns_nstep(values, dones)
 
         callback.on_rollout_end()
 
