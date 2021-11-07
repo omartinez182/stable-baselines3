@@ -373,7 +373,7 @@ class RolloutBuffer(BaseBuffer):
                 next_non_terminal = 1.0 - self.episode_starts[step + 1]
                 next_values = self.values[step + 1]
 
-            R = next_value
+            R = next_values
             returns = []
             for step in reversed(range(len(rewards))):
                 R = rewards[step] + gamma * R * masks[step]
