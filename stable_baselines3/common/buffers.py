@@ -378,7 +378,7 @@ class RolloutBuffer(BaseBuffer):
                 next_non_terminal = 1.0 - self.episode_starts[step + 1]
                 next_values = self.values[step + 1]
           
-            delta = self.rewards[step] + self.gamma * delta * next_non_terminal
+            delta = self.rewards[step] + self.gamma * delta * next_values
             last_gae_lam = delta - self.values[step]
             self.advantages[step] = last_gae_lam
         # TD(lambda) estimator, see Github PR #375 or "Telescoping in TD(lambda)"
