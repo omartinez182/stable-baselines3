@@ -346,7 +346,7 @@ class RolloutBuffer(BaseBuffer):
         self.generator_ready = False
         super(RolloutBuffer, self).reset()
 
-    def compute_returns_nsteps(self, next_value, rewards, masks, gamma=0.99)
+    def compute_returns_nsteps(self, next_value, rewards, masks, gamma=0.99):
         R = next_value
         returns = []
         for step in reversed(range(len(rewards))):
