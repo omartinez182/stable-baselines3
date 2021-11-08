@@ -356,7 +356,7 @@ class RolloutBuffer(BaseBuffer):
         # Convert to numpy
         last_values = last_values.clone().cpu().numpy().flatten()
 
-        delta = 1
+        R = last_values
         for step in reversed(range(self.buffer_size)):
             if step == self.buffer_size - 1:
                 next_non_terminal = 1.0 - dones
@@ -365,12 +365,12 @@ class RolloutBuffer(BaseBuffer):
                 next_non_terminal = 1.0 - self.episode_starts[step + 1]
                 next_values = self.values[step + 1]
           
-            delta = self.rewards[step] + self.gamma * delta * next_non_terminal
-            last_gae_lam = delta - self.values[step]
-            self.advantages[step] = last_gae_lam
+            R = self.rewards[step] + self.gamma * R * next_non_terminal
+            #last_gae_lam = delta - self.values[step]
+            #self.advantages[step] = last_gae_lam
         # TD(lambda) estimator, see Github PR #375 or "Telescoping in TD(lambda)"
         # in David Silver Lecture 4: https://www.youtube.com/watch?v=PnHCvfgC_ZA
-        self.returns = self.advantages
+        self.returns = R -  self.values[step]
 
     def compute_returns_and_advantage(self, last_values: th.Tensor, dones: np.ndarray) -> None:
         """
